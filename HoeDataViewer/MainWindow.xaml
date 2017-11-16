@@ -4,9 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HoeDataViewer"
+        xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Width="1150" Height="750"
+        Loaded="Window_Loaded">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="DirectoryButton" Content="ディレクトリ選択" Click="DirectoryButton_Click"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+            <Label x:Name="DirectoryPathBox" Content="ディレクトリパス" Margin="5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <CheckBox Name="PositionVisibility" Content="グラフに画像の位置を表示させる" Click="PositionVisibility_Click"
+                  IsChecked="True" Margin="5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Name="ClearButton" Content="グラフをすべてクリア" Click="ClearButton_Click"
+                    VerticalAlignment="Center" Margin="5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Name="ImageLabel" Content="jpgName" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Name="DataLabel" Content="Value" Width="100"/>
+            <Slider x:Name="ImageSlider"
+                    Width="500"
+            TickFrequency="1"
+            SmallChange="10" 
+            LargeChange="1000"
+            ValueChanged="ImageSlider_ValueChanged" Margin="50,5,50,5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Name="ThretholdLabel" Content="Value" Width="100"/>
+            <Slider x:Name="PrimitiveSlider"
+                Width="500"
+                    TickFrequency="1"
+            SmallChange="0.01" 
+            LargeChange="0.1"
+            ValueChanged="PrimitiveSlider_ValueChanged"  Margin="50,5,50,5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <ListBox Name="NameBox" Width="150" Height="450" SelectionMode="Multiple" SelectionChanged="NameBox_SelectionChanged"/>
+            <StackPanel>
+                <Label Content=""/>
+                <ListBox Name="JointBox" Width="110" Height="450" SelectionChanged="JointBox_SelectionChanged"/>
+            </StackPanel>
+            <Image x:Name="Image" Width="360" Height="270"/>
+            <StackPanel>
+                <oxy:PlotView Name="DataPlot" Width="460" Height="270"/>
+                <oxy:PlotView Name="PrimitivePlot" Width="460" Height="270"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </Window>
